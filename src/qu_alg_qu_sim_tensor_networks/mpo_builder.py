@@ -722,7 +722,7 @@ def get_P_x(psi, num_total_sites, num_pointers):
     qft = QFT(num_pointers)
     dms = qft.dims
     shape = qft.shape
-    rho = qt.Qobj(tenpy_reduced_density_matrix_pointer(psi, num_total_sites, num_pointers), dims=dms)#, shape=shape)
+    rho = qt.Qobj(reduced_density_matrix_pointer(psi, num_total_sites, num_pointers), dims=dms)#, shape=shape)
     rho_com = qft.dag()*rho*qft
     #print(f"t={t:.2f}")
     Pxs = []
@@ -740,7 +740,7 @@ def get_P_x(psi, num_total_sites, num_pointers):
     
     
     
-def tenpy_reduced_density_matrix_pointer(Psi, n_sys, n_ps, as_matrix = True):
+def reduced_density_matrix_pointer(Psi, n_sys, n_ps, as_matrix = True):
     """Compute the reduce density matrix of pointers only
 
     Args:
@@ -804,7 +804,7 @@ def projector_p_x(xp, n_pointer, d=2):
 
 
 
-def tenpy_form_initi_pointer_state(num_pointers):
+def form_initial_pointer_state(num_pointers):
     up_state = qt.tensor([qt.basis(2,0) for i in range(num_pointers)])
     qft = QFT.qft(num_pointers)
     zero_state_p = qft*up_state
@@ -820,7 +820,7 @@ def tenpy_form_initi_pointer_state(num_pointers):
     return Bs_pm, Ss_p
 
 
-def tenpy_system_pointer_psi(psi_sys, Bsp, Ssp):
+def system_pointer_psi(psi_sys, Bsp, Ssp):
     Ss_sys = psi_sys.Ss
     Ss_p = Ssp
     Ss = Ss_sys + Ss_p

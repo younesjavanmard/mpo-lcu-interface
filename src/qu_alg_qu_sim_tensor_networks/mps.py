@@ -65,7 +65,7 @@ class MPS:
         """Return a deep copy of this MPS (tensors and Schmidt values are copied)."""
         return MPS([B.copy() for B in self.Bs], [S.copy() for S in self.Ss], self.bc)
 
-    def get_theta1(self, i):
+    def one_site_center(self, i):
         """Calculate effective single-site wave function on sites i in mixed canonical form.
 
         The returned array has legs ``vL, i, vR`` (as one of the Bs).
@@ -73,14 +73,14 @@ class MPS:
         xp = get_array_module(self.Bs[i])
         return xp.tensordot(xp.diag(self.Ss[i]), self.Bs[i], (1, 0))  # vL [vL'], [vL] i vR
 
-    def get_theta2(self, i):
+    def two_site_center(self, i):
         """Calculate effective two-site wave function on sites i,j=(i+1) in mixed canonical form.
 
         The returned array has legs ``vL, i, j, vR``.
         """
         j = (i + 1) % self.L
         xp = get_array_module(self.Bs[i])
-        return xp.tensordot(self.get_theta1(i), self.Bs[j], (2, 0))  # vL i [vR], [vL] j vR
+        return xp.tensordot(self.one_site_center(i), self.Bs[j], (2, 0))  # vL i [vR], [vL] j vR
 
     def get_chi(self):
         """Return bond dimensions."""
@@ -91,7 +91,7 @@ class MPS:
         result = []
         for i in range(self.L):
             xp = get_array_module(self.Bs[i])
-            theta = self.get_theta1(i)  # vL i vR
+            theta = self.one_site_center(i)  # vL i vR
             op_dev = xp.asarray(op)
             op_theta = xp.tensordot(op_dev, theta, axes=(1, 1))
             result.append(to_numpy(xp.tensordot(theta.conj(), op_theta, ([0, 1, 2], [1, 0, 2]))))
@@ -102,7 +102,7 @@ class MPS:
         result = []
         for i in range(self.nbonds):
             xp = get_array_module(self.Bs[i])
-            theta = self.get_theta2(i)  # vL i j vR
+            theta = self.two_site_center(i)  # vL i j vR
             op_dev = xp.asarray(op[i])
             op_theta = xp.tensordot(op_dev, theta, axes=([2, 3], [1, 2]))
             result.append(to_numpy(xp.tensordot(theta.conj(), op_theta, ([0, 1, 2, 3], [2, 0, 1, 3]))))
@@ -150,7 +150,7 @@ class MPS:
         assert i < j
         xp = get_array_module(self.Bs[i])
         op_i_dev, op_j_dev = xp.asarray(op_i), xp.asarray(op_j)
-        theta = self.get_theta1(i)
+        theta = self.one_site_center(i)
         C = xp.tensordot(op_i_dev, theta, axes=(1, 1))
         C = xp.tensordot(theta.conj(), C, axes=([0, 1], [1, 0]))
         for k in range(i + 1, j):
@@ -301,7 +301,7 @@ def init_xf_state(L, d, bc="finite"):
     return MPS(Bs, Ss, bc=bc)    
 
 
-def split_truncate_theta(theta, chi_max, eps, return_norm=False):
+def svd_split_truncate(theta, chi_max, eps, return_norm=False):
     """Split and truncate a two-site wave function in mixed canonical form.
 
     Split a two-site wave function as follows::

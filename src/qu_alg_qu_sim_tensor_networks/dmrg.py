@@ -232,7 +232,7 @@ class DMRGEngine:
           - Bs (list of rank-3 arrays): right-canonical site tensors (vL, i, vR)
           - Ss (list of 1D arrays): Schmidt singular values per bond (vC)
           - nbonds (int)
-          - get_theta2(i) -> rank-4 array: current two-site center (vL, i, j, vR)
+          - two_site_center(i) -> rank-4 array: current two-site center (vL, i, j, vR)
     model : object
         Must expose `H_mpo`, a list of rank-4 MPO tensors per site: (wL, wR, i, i*)
     chi_max : int
@@ -252,15 +252,15 @@ class DMRGEngine:
                  eig_maxiter=4000, eig_tol=1e-6, eig_retries=3,
                  eig_ncv=None, eig_dense_limit=4096, eig_random_state=1234,
                  eig_hermitize=True):
-        from qu_alg_qu_sim_tensor_networks.mps import split_truncate_theta
+        from qu_alg_qu_sim_tensor_networks.mps import svd_split_truncate
 
         assert psi.L == model.L and psi.bc == model.bc
         self.H_mpo = model.H_mpo
         self.psi = psi
-        self.split_truncate_theta = split_truncate_theta
+        self.svd_split_truncate = svd_split_truncate
 
-        self.LPs = [None] * psi.L
-        self.RPs = [None] * psi.L
+        self.left_envs = [None] * psi.L
+        self.right_envs = [None] * psi.L
         self.chi_max = chi_max
         self.eps = eps
 
@@ -281,16 +281,16 @@ class DMRGEngine:
         # initialize left/right environments on device
         D = self.H_mpo[0].shape[0]
         chi = psi.Bs[0].shape[0]
-        LP = xp.zeros([chi, D, chi], dtype=float)  # vL wL* vL*
-        RP = xp.zeros([chi, D, chi], dtype=float)  # vR* wR* vR
-        LP[:, 0, :] = xp.eye(chi)
-        RP[:, D - 1, :] = xp.eye(chi)
-        self.LPs[0] = LP
-        self.RPs[-1] = RP
+        left_env = xp.zeros([chi, D, chi], dtype=float)  # vL wL* vL*
+        right_env = xp.zeros([chi, D, chi], dtype=float)  # vR* wR* vR
+        left_env[:, 0, :] = xp.eye(chi)
+        right_env[:, D - 1, :] = xp.eye(chi)
+        self.left_envs[0] = left_env
+        self.right_envs[-1] = right_env
 
         # prepare right environments
         for i in range(psi.L - 1, 1, -1):
-            self.update_RP(i, psi.Bs[i])
+            self.absorb_right_site(i, psi.Bs[i])
 
     def sweep(self) -> float:
         """
@@ -331,15 +331,15 @@ class DMRGEngine:
             Local ground-state energy for that bond.
         """
         j = (i + 1) % self.psi.L
-        Heff = Heff2(self.LPs[i], self.RPs[j], self.H_mpo[i], self.H_mpo[j])
-        theta_guess = self.psi.get_theta2(i)
+        Heff = Heff2(self.left_envs[i], self.right_envs[j], self.H_mpo[i], self.H_mpo[j])
+        theta_guess = self.psi.two_site_center(i)
         E0, theta = self.diag(Heff, theta_guess)
 
         # diag() returns theta on the host (the eigensolver hands back a NumPy
-        # vector); move it back to the compute device so split_truncate_theta
+        # vector); move it back to the compute device so svd_split_truncate
         # and the following contractions stay on-device (no-op on CPU).
         theta = to_device(theta)
-        Ai, Sj, Bj = self.split_truncate_theta(theta, self.chi_max, self.eps)
+        Ai, Sj, Bj = self.svd_split_truncate(theta, self.chi_max, self.eps)
 
         # write back into right-canonical storage
         Gi = xp.tensordot(xp.diag(xp.asarray(self.psi.Ss[i]) ** (-1)), Ai, axes=(1, 0))
@@ -348,8 +348,8 @@ class DMRGEngine:
         self.psi.Bs[j] = Bj                                                  # vC j vR
 
         # environments
-        self.update_LP(i, Ai)
-        self.update_RP(j, Bj)
+        self.absorb_left_site(i, Ai)
+        self.absorb_right_site(j, Bj)
         return E0
 
     def diag(self, Heff: 'Heff2', guess: np.ndarray) -> tuple[float, np.ndarray]:
@@ -388,7 +388,7 @@ class DMRGEngine:
         )
         return E0, np.reshape(v0, Heff.theta_shape)
 
-    def update_RP(self, i: int, B: np.ndarray) -> None:
+    def absorb_right_site(self, i: int, B: np.ndarray) -> None:
         """
         Update right environment tensor immediately to the left of site i.
 
@@ -400,16 +400,16 @@ class DMRGEngine:
             Right-canonical site tensor at i with shape (vL, i, vR).
         """
         j = (i - 1) % self.psi.L
-        RP = self.RPs[i]     # vR* wR* vR
+        right_env = self.right_envs[i]     # vR* wR* vR
         Bc = B.conj()        # vL* i* vR*
         W = self.H_mpo[i]    # wL wR i i*
 
-        RP = xp.tensordot(B, RP, axes=(2, 0))
-        RP = xp.tensordot(RP, W, axes=([1, 2], [3, 1]))
-        RP = xp.tensordot(RP, Bc, axes=([1, 3], [2, 1]))
-        self.RPs[j] = RP
+        right_env = xp.tensordot(B, right_env, axes=(2, 0))
+        right_env = xp.tensordot(right_env, W, axes=([1, 2], [3, 1]))
+        right_env = xp.tensordot(right_env, Bc, axes=([1, 3], [2, 1]))
+        self.right_envs[j] = right_env
 
-    def update_LP(self, i: int, A: np.ndarray) -> None:
+    def absorb_left_site(self, i: int, A: np.ndarray) -> None:
         """
         Update left environment tensor immediately to the right of site i.
 
@@ -421,28 +421,28 @@ class DMRGEngine:
             Left-canonical site tensor at i with shape (vL, i, vR).
         """
         j = (i + 1) % self.psi.L
-        LP = self.LPs[i]     # vL wL vL*
+        left_env = self.left_envs[i]     # vL wL vL*
         Ac = A.conj()        # vL* i* vR*
         W = self.H_mpo[i]    # wL wR i i*
 
-        LP = xp.tensordot(LP, A, axes=(2, 0))
-        LP = xp.tensordot(W, LP, axes=([0, 3], [1, 2]))
-        LP = xp.tensordot(Ac, LP, axes=([0, 1], [2, 1]))
-        self.LPs[j] = LP
+        left_env = xp.tensordot(left_env, A, axes=(2, 0))
+        left_env = xp.tensordot(W, left_env, axes=([0, 3], [1, 2]))
+        left_env = xp.tensordot(Ac, left_env, axes=([0, 1], [2, 1]))
+        self.left_envs[j] = left_env
 
 
 class Heff2(NP_LinearOperator):
     """
     Two-site effective Hamiltonian as a SciPy LinearOperator.
 
-    Contracts LP -- W1 -- W2 -- RP with a two-site vector theta (flattened)
+    Contracts left_env -- W1 -- W2 -- right_env with a two-site vector theta (flattened)
     without ever materializing the full Heff matrix.
 
     Parameters
     ----------
-    LP : ndarray
+    left_env : ndarray
         Left environment (vL, wL*, vL*).
-    RP : ndarray
+    right_env : ndarray
         Right environment (vR*, wR*, vR).
     W1 : ndarray
         Left-site MPO tensor (wL, wC, i, i*).
@@ -454,12 +454,12 @@ class Heff2(NP_LinearOperator):
     theta_shape : tuple
         Shape (vL, i, j, vR) used for reshaping vectors inside matvec.
     """
-    def __init__(self, LP, RP, W1, W2):
-        self.LP = LP  # vL wL* vL*
-        self.RP = RP  # vR* wR* vR
+    def __init__(self, left_env, right_env, W1, W2):
+        self.left_env = left_env  # vL wL* vL*
+        self.right_env = right_env  # vR* wR* vR
         self.W1 = W1  # wL wC i i*
         self.W2 = W2  # wC wR j j*
-        chi1, chi2 = LP.shape[0], RP.shape[2]
+        chi1, chi2 = left_env.shape[0], right_env.shape[2]
         d1, d2 = W1.shape[2], W2.shape[2]
         self.theta_shape = (chi1, d1, d2, chi2)   # vL i j vR
         n = chi1 * d1 * d2 * chi2
@@ -468,10 +468,10 @@ class Heff2(NP_LinearOperator):
     def _matvec(self, theta):
         """Compute y = Heff * theta for flattened theta (n,)."""
         x = xp.reshape(xp.asarray(theta), self.theta_shape)
-        x = xp.tensordot(self.LP, x, axes=(2, 0))
+        x = xp.tensordot(self.left_env, x, axes=(2, 0))
         x = xp.tensordot(x, self.W1, axes=([1, 2], [0, 3]))
         x = xp.tensordot(x, self.W2, axes=([3, 1], [0, 3]))
-        x = xp.tensordot(x, self.RP, axes=([1, 3], [0, 1]))
+        x = xp.tensordot(x, self.right_env, axes=([1, 3], [0, 1]))
         return to_numpy(xp.reshape(x, self.shape[0]))
 
 
