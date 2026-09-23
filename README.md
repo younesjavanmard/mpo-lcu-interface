@@ -18,7 +18,7 @@ the scripts that generate the paper's figures.
 src/qu_alg_qu_sim_tensor_networks/   core library (paper subset)
   hamiltonians.py     Pauli-sum Hamiltonian, get_mpo (SVD-compressed MPO),
                       from_openfermion, Renormalizer cross-check helper
-  graph_builder_new_version_just_to_keep_it.py
+  graph_builder_new_version.py
                       symbolic left/right graphs + coefficient bridge at a cut
   mpo_builder.py      cut environments / effective operators for the bridge
   mps.py, mps_helper.py, dmrg.py, tdvp.py, lanczos.py, backend.py, lattice/

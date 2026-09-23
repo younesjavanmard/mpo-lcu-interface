@@ -28,7 +28,7 @@ from itertools import product  # (kept; used by some users externally)
 import numpy as np
 
 
-from qu_alg_qu_sim_tensor_networks import graph_builder_new_version_just_to_keep_it as gb
+from qu_alg_qu_sim_tensor_networks import graph_builder_new_version as gb
 from qu_alg_qu_sim_tensor_networks import mpo_builder as qmpo
 
 
