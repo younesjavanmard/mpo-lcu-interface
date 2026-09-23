@@ -1,8 +1,14 @@
 # Coefficient-Decoupled MPOs as an Interface to LCU Circuits — code
 
-Reproducibility package for the paper *"Coefficient-Decoupled Matrix Product
-Operators as an Interface to Linear-Combination-of-Unitaries Circuits"*
-(QST-105164). It contains **only** the code used in the paper: the
+This repository is the official implementation accompanying the paper
+
+> **Coefficient-Decoupled Matrix Product Operators as an Interface to
+> Linear-Combination-of-Unitaries Circuits**
+> Younes Javanmard
+> arXiv: https://arxiv.org/abs/2603.24822
+
+It is the reproducibility package for that work and contains **only** the code
+used in the paper: the
 coefficient-decoupled Hamiltonian-MPO construction, the symbolic left/right graph
 + coefficient-bridge machinery, MPS perfect sampling, the bridge optimizer, and
 the scripts that generate the paper's figures.
