@@ -15,8 +15,11 @@ mpl.rcParams.update({
 })
 RESUB = os.environ.get("PAPER_OUT",
     os.path.join(os.path.dirname(__file__),"..","..","paper_outputs"))
-DATA = os.path.join(RESUB, "data", "mpo_bonddim_vs_renormalizer.json")
+REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+# input data ships in the package under results/
+DATA = os.path.join(REPO, "results", "mpo_bonddim_vs_renormalizer.json")
 FIG = os.path.join(RESUB, "figs", "fig_mpo_bonddim_vs_renormalizer.pdf")
+os.makedirs(os.path.join(RESUB,"figs"), exist_ok=True)
 
 NICE = {"H2_sto3g":"H$_2$","LiH_sto3g_small":"LiH$^\\ast$","LiH_sto3g_medium":"LiH$^{\\ast\\ast}$",
         "BeH_sto3g_small":"BeH","LiH_sto3g_full":"LiH","HF_sto3g_full":"HF",

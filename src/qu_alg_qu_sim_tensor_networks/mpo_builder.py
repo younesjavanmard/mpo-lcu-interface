@@ -14,7 +14,7 @@ except Exception:  # pragma: no cover - optional dependency
 
 
 from qu_alg_qu_sim_tensor_networks import mps
-from qu_alg_qu_sim_tensor_networks.tdvp import TDVPEngine
+# (TDVP engine intentionally not part of this paper package; unused here)
 from qu_alg_qu_sim_tensor_networks import dmrg
 
 
