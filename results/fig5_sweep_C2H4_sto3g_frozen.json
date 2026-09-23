@@ -1,0 +1,649 @@
+{
+  "molecule": "C2H4_sto3g_frozen",
+  "E_dmrg": {
+    "8": -77.14593865302126,
+    "32": -77.16888495433845
+  },
+  "runs": [
+    {
+      "chi": 8,
+      "n_samples": 50,
+      "sampling_seed": 0,
+      "n_excitations": 13,
+      "energy": -77.11901090656139,
+      "wall_s": 1.0
+    },
+    {
+      "chi": 8,
+      "n_samples": 50,
+      "sampling_seed": 1,
+      "n_excitations": 10,
+      "energy": -77.11733218615252,
+      "wall_s": 0.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 50,
+      "sampling_seed": 2,
+      "n_excitations": 12,
+      "energy": -77.11691145227542,
+      "wall_s": 0.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 50,
+      "sampling_seed": 3,
+      "n_excitations": 15,
+      "energy": -77.1205948348501,
+      "wall_s": 1.2
+    },
+    {
+      "chi": 8,
+      "n_samples": 50,
+      "sampling_seed": 4,
+      "n_excitations": 16,
+      "energy": -77.12414834793792,
+      "wall_s": 1.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 100,
+      "sampling_seed": 0,
+      "n_excitations": 23,
+      "energy": -77.11913750307338,
+      "wall_s": 3.8
+    },
+    {
+      "chi": 8,
+      "n_samples": 100,
+      "sampling_seed": 1,
+      "n_excitations": 20,
+      "energy": -77.11746382505157,
+      "wall_s": 2.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 100,
+      "sampling_seed": 2,
+      "n_excitations": 19,
+      "energy": -77.11901144794821,
+      "wall_s": 2.8
+    },
+    {
+      "chi": 8,
+      "n_samples": 100,
+      "sampling_seed": 3,
+      "n_excitations": 24,
+      "energy": -77.12742722397323,
+      "wall_s": 3.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 100,
+      "sampling_seed": 4,
+      "n_excitations": 22,
+      "energy": -77.12606008594881,
+      "wall_s": 5.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 200,
+      "sampling_seed": 0,
+      "n_excitations": 34,
+      "energy": -77.1234322919215,
+      "wall_s": 24.0
+    },
+    {
+      "chi": 8,
+      "n_samples": 200,
+      "sampling_seed": 1,
+      "n_excitations": 36,
+      "energy": -77.12331345602679,
+      "wall_s": 5.3
+    },
+    {
+      "chi": 8,
+      "n_samples": 200,
+      "sampling_seed": 2,
+      "n_excitations": 35,
+      "energy": -77.12561782921682,
+      "wall_s": 6.8
+    },
+    {
+      "chi": 8,
+      "n_samples": 200,
+      "sampling_seed": 3,
+      "n_excitations": 36,
+      "energy": -77.13057576132758,
+      "wall_s": 8.8
+    },
+    {
+      "chi": 8,
+      "n_samples": 200,
+      "sampling_seed": 4,
+      "n_excitations": 30,
+      "energy": -77.12847573993625,
+      "wall_s": 5.7
+    },
+    {
+      "chi": 8,
+      "n_samples": 300,
+      "sampling_seed": 0,
+      "n_excitations": 53,
+      "energy": -77.1290584373851,
+      "wall_s": 22.0
+    },
+    {
+      "chi": 8,
+      "n_samples": 300,
+      "sampling_seed": 1,
+      "n_excitations": 48,
+      "energy": -77.12332640180625,
+      "wall_s": 10.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 300,
+      "sampling_seed": 2,
+      "n_excitations": 41,
+      "energy": -77.12909011640944,
+      "wall_s": 11.0
+    },
+    {
+      "chi": 8,
+      "n_samples": 300,
+      "sampling_seed": 3,
+      "n_excitations": 53,
+      "energy": -77.1355272596513,
+      "wall_s": 32.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 300,
+      "sampling_seed": 4,
+      "n_excitations": 45,
+      "energy": -77.1314104079365,
+      "wall_s": 22.0
+    },
+    {
+      "chi": 8,
+      "n_samples": 400,
+      "sampling_seed": 0,
+      "n_excitations": 65,
+      "energy": -77.1290636159113,
+      "wall_s": 37.7
+    },
+    {
+      "chi": 8,
+      "n_samples": 400,
+      "sampling_seed": 1,
+      "n_excitations": 56,
+      "energy": -77.12354544268591,
+      "wall_s": 19.1
+    },
+    {
+      "chi": 8,
+      "n_samples": 400,
+      "sampling_seed": 2,
+      "n_excitations": 59,
+      "energy": -77.1383577454226,
+      "wall_s": 68.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 400,
+      "sampling_seed": 3,
+      "n_excitations": 71,
+      "energy": -77.13604096506542,
+      "wall_s": 97.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 400,
+      "sampling_seed": 4,
+      "n_excitations": 56,
+      "energy": -77.13159460869561,
+      "wall_s": 33.3
+    },
+    {
+      "chi": 8,
+      "n_samples": 500,
+      "sampling_seed": 0,
+      "n_excitations": 78,
+      "energy": -77.13034087615189,
+      "wall_s": 86.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 500,
+      "sampling_seed": 1,
+      "n_excitations": 68,
+      "energy": -77.12349506952786,
+      "wall_s": 30.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 500,
+      "sampling_seed": 2,
+      "n_excitations": 73,
+      "energy": -77.1388394367629,
+      "wall_s": 134.8
+    },
+    {
+      "chi": 8,
+      "n_samples": 500,
+      "sampling_seed": 3,
+      "n_excitations": 89,
+      "energy": -77.13774332929508,
+      "wall_s": 156.7
+    },
+    {
+      "chi": 8,
+      "n_samples": 500,
+      "sampling_seed": 4,
+      "n_excitations": 69,
+      "energy": -77.13484434568336,
+      "wall_s": 86.2
+    },
+    {
+      "chi": 8,
+      "n_samples": 750,
+      "sampling_seed": 0,
+      "n_excitations": 113,
+      "energy": -77.13124527703697,
+      "wall_s": 297.4
+    },
+    {
+      "chi": 8,
+      "n_samples": 750,
+      "sampling_seed": 1,
+      "n_excitations": 95,
+      "energy": -77.12830961907959,
+      "wall_s": 126.3
+    },
+    {
+      "chi": 8,
+      "n_samples": 750,
+      "sampling_seed": 2,
+      "n_excitations": 111,
+      "energy": -77.14274226203213,
+      "wall_s": 395.3
+    },
+    {
+      "chi": 8,
+      "n_samples": 750,
+      "sampling_seed": 3,
+      "n_excitations": 134,
+      "energy": -77.13961576448186,
+      "wall_s": 534.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 750,
+      "sampling_seed": 4,
+      "n_excitations": 103,
+      "energy": -77.13901646502572,
+      "wall_s": 246.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 1000,
+      "sampling_seed": 0,
+      "n_excitations": 147,
+      "energy": -77.13451610588349,
+      "wall_s": 556.5
+    },
+    {
+      "chi": 8,
+      "n_samples": 1000,
+      "sampling_seed": 1,
+      "n_excitations": 125,
+      "energy": -77.13024946930145,
+      "wall_s": 344.9
+    },
+    {
+      "chi": 8,
+      "n_samples": 1000,
+      "sampling_seed": 2,
+      "n_excitations": 142,
+      "energy": -77.14325999158578,
+      "wall_s": 845.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 1000,
+      "sampling_seed": 3,
+      "n_excitations": 173,
+      "energy": -77.14305061045339,
+      "wall_s": 1024.6
+    },
+    {
+      "chi": 8,
+      "n_samples": 1000,
+      "sampling_seed": 4,
+      "n_excitations": 128,
+      "energy": -77.13986988240096,
+      "wall_s": 460.2
+    },
+    {
+      "chi": 32,
+      "n_samples": 50,
+      "sampling_seed": 0,
+      "n_excitations": 15,
+      "energy": -77.12035004107257,
+      "wall_s": 29.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 50,
+      "sampling_seed": 1,
+      "n_excitations": 11,
+      "energy": -77.11755827524846,
+      "wall_s": 29.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 50,
+      "sampling_seed": 2,
+      "n_excitations": 12,
+      "energy": -77.11691145227545,
+      "wall_s": 29.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 50,
+      "sampling_seed": 3,
+      "n_excitations": 16,
+      "energy": -77.12061602706332,
+      "wall_s": 30.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 50,
+      "sampling_seed": 4,
+      "n_excitations": 15,
+      "energy": -77.12354927011694,
+      "wall_s": 30.9
+    },
+    {
+      "chi": 32,
+      "n_samples": 100,
+      "sampling_seed": 0,
+      "n_excitations": 27,
+      "energy": -77.1260032705139,
+      "wall_s": 63.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 100,
+      "sampling_seed": 1,
+      "n_excitations": 21,
+      "energy": -77.11832550226762,
+      "wall_s": 63.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 100,
+      "sampling_seed": 2,
+      "n_excitations": 21,
+      "energy": -77.12139944613989,
+      "wall_s": 60.9
+    },
+    {
+      "chi": 32,
+      "n_samples": 100,
+      "sampling_seed": 3,
+      "n_excitations": 26,
+      "energy": -77.1307307823714,
+      "wall_s": 63.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 100,
+      "sampling_seed": 4,
+      "n_excitations": 26,
+      "energy": -77.12706197094539,
+      "wall_s": 62.3
+    },
+    {
+      "chi": 32,
+      "n_samples": 200,
+      "sampling_seed": 0,
+      "n_excitations": 40,
+      "energy": -77.13358732480134,
+      "wall_s": 128.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 200,
+      "sampling_seed": 1,
+      "n_excitations": 40,
+      "energy": -77.12700274316434,
+      "wall_s": 126.7
+    },
+    {
+      "chi": 32,
+      "n_samples": 200,
+      "sampling_seed": 2,
+      "n_excitations": 40,
+      "energy": -77.13055823834188,
+      "wall_s": 131.9
+    },
+    {
+      "chi": 32,
+      "n_samples": 200,
+      "sampling_seed": 3,
+      "n_excitations": 40,
+      "energy": -77.13299535572104,
+      "wall_s": 132.3
+    },
+    {
+      "chi": 32,
+      "n_samples": 200,
+      "sampling_seed": 4,
+      "n_excitations": 36,
+      "energy": -77.13087494174123,
+      "wall_s": 127.9
+    },
+    {
+      "chi": 32,
+      "n_samples": 300,
+      "sampling_seed": 0,
+      "n_excitations": 64,
+      "energy": -77.14072009984031,
+      "wall_s": 247.7
+    },
+    {
+      "chi": 32,
+      "n_samples": 300,
+      "sampling_seed": 1,
+      "n_excitations": 54,
+      "energy": -77.1275290162821,
+      "wall_s": 213.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 300,
+      "sampling_seed": 2,
+      "n_excitations": 49,
+      "energy": -77.13325496037892,
+      "wall_s": 211.1
+    },
+    {
+      "chi": 32,
+      "n_samples": 300,
+      "sampling_seed": 3,
+      "n_excitations": 59,
+      "energy": -77.14005086341683,
+      "wall_s": 220.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 300,
+      "sampling_seed": 4,
+      "n_excitations": 53,
+      "energy": -77.13383047286649,
+      "wall_s": 208.0
+    },
+    {
+      "chi": 32,
+      "n_samples": 400,
+      "sampling_seed": 0,
+      "n_excitations": 78,
+      "energy": -77.14132017065653,
+      "wall_s": 375.3
+    },
+    {
+      "chi": 32,
+      "n_samples": 400,
+      "sampling_seed": 1,
+      "n_excitations": 64,
+      "energy": -77.12863033309304,
+      "wall_s": 285.7
+    },
+    {
+      "chi": 32,
+      "n_samples": 400,
+      "sampling_seed": 2,
+      "n_excitations": 71,
+      "energy": -77.14318224800388,
+      "wall_s": 373.5
+    },
+    {
+      "chi": 32,
+      "n_samples": 400,
+      "sampling_seed": 3,
+      "n_excitations": 79,
+      "energy": -77.14130749614058,
+      "wall_s": 365.7
+    },
+    {
+      "chi": 32,
+      "n_samples": 400,
+      "sampling_seed": 4,
+      "n_excitations": 70,
+      "energy": -77.13776668872038,
+      "wall_s": 331.1
+    },
+    {
+      "chi": 32,
+      "n_samples": 500,
+      "sampling_seed": 0,
+      "n_excitations": 92,
+      "energy": -77.14243467042071,
+      "wall_s": 480.0
+    },
+    {
+      "chi": 32,
+      "n_samples": 500,
+      "sampling_seed": 1,
+      "n_excitations": 84,
+      "energy": -77.13676640396633,
+      "wall_s": 441.5
+    },
+    {
+      "chi": 32,
+      "n_samples": 500,
+      "sampling_seed": 2,
+      "n_excitations": 87,
+      "energy": -77.14319832699017,
+      "wall_s": 490.8
+    },
+    {
+      "chi": 32,
+      "n_samples": 500,
+      "sampling_seed": 3,
+      "n_excitations": 98,
+      "energy": -77.14622968066925,
+      "wall_s": 534.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 500,
+      "sampling_seed": 4,
+      "n_excitations": 86,
+      "energy": -77.14060575092518,
+      "wall_s": 456.2
+    },
+    {
+      "chi": 32,
+      "n_samples": 750,
+      "sampling_seed": 0,
+      "n_excitations": 132,
+      "energy": -77.14408255596572,
+      "wall_s": 926.8
+    },
+    {
+      "chi": 32,
+      "n_samples": 750,
+      "sampling_seed": 1,
+      "n_excitations": 117,
+      "energy": -77.1443853086757,
+      "wall_s": 807.7
+    },
+    {
+      "chi": 32,
+      "n_samples": 750,
+      "sampling_seed": 2,
+      "n_excitations": 131,
+      "energy": -77.1482900640965,
+      "wall_s": 1092.3
+    },
+    {
+      "chi": 32,
+      "n_samples": 750,
+      "sampling_seed": 3,
+      "n_excitations": 151,
+      "energy": -77.15390347169514,
+      "wall_s": 1261.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 750,
+      "sampling_seed": 4,
+      "n_excitations": 129,
+      "energy": -77.15060941717032,
+      "wall_s": 954.4
+    },
+    {
+      "chi": 32,
+      "n_samples": 1000,
+      "sampling_seed": 0,
+      "n_excitations": 173,
+      "energy": -77.1475085205409,
+      "wall_s": 1685.1
+    },
+    {
+      "chi": 32,
+      "n_samples": 1000,
+      "sampling_seed": 1,
+      "n_excitations": 154,
+      "energy": -77.1497323905995,
+      "wall_s": 1551.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 1000,
+      "sampling_seed": 2,
+      "n_excitations": 171,
+      "energy": -77.15157544312106,
+      "wall_s": 1986.2
+    },
+    {
+      "chi": 32,
+      "n_samples": 1000,
+      "sampling_seed": 3,
+      "n_excitations": 199,
+      "energy": -77.15576548534158,
+      "wall_s": 2599.6
+    },
+    {
+      "chi": 32,
+      "n_samples": 1000,
+      "sampling_seed": 4,
+      "n_excitations": 156,
+      "energy": -77.15105169129626,
+      "wall_s": 1551.0
+    }
+  ]
+}

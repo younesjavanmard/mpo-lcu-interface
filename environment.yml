@@ -1,0 +1,20 @@
+name: tangelo_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - openfermion=0.11.0 # Changed to an older version for Cirq compatibility
+  - cirq=0.11.0
+  - pip
+  - h5py # Tangelo dependency
+  - bitarray # Tangelo dependency
+  - networkx # OpenFermion dependency
+  - numpy # OpenFermion dependency
+  - scipy # OpenFermion dependency
+  - sympy # OpenFermion dependency
+  - requests # OpenFermion dependency
+  - pubchempy # OpenFermion dependency
+  - deprecation # OpenFermion dependency
+  - psi4 # Required by Tangelo for molecular computation
+  # Add other direct dependencies of openfermion or tangelo if they are not brought in by the above
