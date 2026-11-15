@@ -1,0 +1,20 @@
+[setup H8_chain_r1.0] cell  2 ok (0.0s)
+[setup H8_chain_r1.0] cell  5 ok (1.8s)
+[setup H8_chain_r1.0] cell  6 ok (0.0s)
+[setup H8_chain_r1.0] cell  8 ok (1.9s)
+[setup H8_chain_r1.0] cell  9 ok (3.7s)
+[setup H8_chain_r1.0] cell 11 ok (0.0s)
+[setup H8_chain_r1.0] cell 12 ok (0.0s)
+[setup H8_chain_r1.0] cell 14 ok (0.0s)
+[setup H8_chain_r1.0] cell 22 ok (10.5s)
+[setup H8_chain_r1.0] cell 24 ok (0.0s)
+[setup H8_chain_r1.0] cell 30 ok (0.0s)
+[H8_chain_r1.0] n=16 E_HF=-4.17436981 E_FCI=-4.30757160 dim=4900
+[H8_chain_r1.0 chi=32] E_src=-4.30332173 dE=4.250 mHa F_src=0.99754 norm_sector=1.000000
+[H8_chain_r1.0 chi=32] N=1000 seed=2 |U|=226 dets=70 dE_fci=38.744 dE_src=+34.494 mHa F=0.9764 Lam=2.682 p=0.139 (311.31s)
+[H8_chain_r1.0 chi=32] N=1000 seed=3 |U|=236 dets=76 dE_fci=33.039 dE_src=+28.789 mHa F=0.9790 Lam=2.775 p=0.130 (327.47s)
+[H8_chain_r1.0 chi=32] N=1000 seed=4 |U|=236 dets=67 dE_fci=36.902 dE_src=+32.652 mHa F=0.9781 Lam=2.685 p=0.139 (382.25s)
+[H8_chain_r1.0 chi=32] N=4000 seed=2 |U|=922 dets=160 dE_fci=14.998 dE_src=+10.748 mHa F=0.9914 Lam=3.440 p=0.085 (1644.0s)
+[H8_chain_r1.0 chi=32] N=4000 seed=3 |U|=900 dets=158 dE_fci=13.621 dE_src=+9.371 mHa F=0.9920 Lam=3.470 p=0.083 (1706.58s)
+[H8_chain_r1.0 chi=32] N=4000 seed=4 |U|=944 dets=155 dE_fci=16.114 dE_src=+11.864 mHa F=0.9911 Lam=3.442 p=0.084 (1672.92s)
+done /content/r2/scripts/round2_referee/results_n16k/H8r10_c/r2_H8_chain_r1.0_chi32.json

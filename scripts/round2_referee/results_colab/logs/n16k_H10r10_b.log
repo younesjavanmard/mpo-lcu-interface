@@ -1,0 +1,18 @@
+[setup H10_chain_r1.0] cell  2 ok (0.0s)
+[setup H10_chain_r1.0] cell  5 ok (1.5s)
+[setup H10_chain_r1.0] cell  6 ok (0.0s)
+[setup H10_chain_r1.0] cell  8 ok (1.7s)
+[setup H10_chain_r1.0] cell  9 ok (11.1s)
+[setup H10_chain_r1.0] cell 11 ok (0.0s)
+[setup H10_chain_r1.0] cell 12 ok (0.0s)
+[setup H10_chain_r1.0] cell 14 ok (0.0s)
+[setup H10_chain_r1.0] cell 22 ok (81.6s)
+[setup H10_chain_r1.0] cell 24 ok (0.0s)
+[setup H10_chain_r1.0] cell 30 ok (0.0s)
+[H10_chain_r1.0] n=20 E_HF=-5.21406880 E_FCI=-5.37995475 dim=63504
+[H10_chain_r1.0 chi=32] E_src=-5.36589181 dE=14.063 mHa F_src=0.99122 norm_sector=0.999978
+[H10_chain_r1.0 chi=32] N=1000 seed=3 |U|=246 dets=97 dE_fci=62.483 dE_src=+48.420 mHa F=0.9594 Lam=3.139 p=0.101 (711.47s)
+[H10_chain_r1.0 chi=32] N=1000 seed=4 |U|=241 dets=100 dE_fci=62.217 dE_src=+48.154 mHa F=0.9610 Lam=3.194 p=0.098 (706.96s)
+[H10_chain_r1.0 chi=32] N=4000 seed=3 |U|=954 dets=215 dE_fci=33.350 dE_src=+19.287 mHa F=0.9794 Lam=4.255 p=0.055 (2859.11s)
+[H10_chain_r1.0 chi=32] N=4000 seed=4 |U|=1017 dets=210 dE_fci=34.818 dE_src=+20.755 mHa F=0.9786 Lam=4.203 p=0.057 (2573.08s)
+done /content/r2/scripts/round2_referee/results_n16k/H10r10_b/r2_H10_chain_r1.0_chi32.json

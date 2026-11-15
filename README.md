@@ -27,15 +27,27 @@ jupyter-notebooks/tensor_networks/
 results/                             raw data for the main-text figures
   fig5_sweep_C2H2_*.json, fig5_sweep_C2H4_*.json   (per-seed + aggregated)
 scripts/
-  referee_baselines/  pool-baseline comparison (Fig. 4 / Table I)
+  referee_baselines/  pool-baseline comparison (Fig. 6 / Table I)
     pool_eval_exact.py            exact variational energy of a Pauli pool
     r26_baselines_exact_C2H2.py   ours vs random vs chemistry (authoritative)
     r26_chemistry_pool_C2H2.py    qubit singles+doubles pool builder
     make_r26_figure.py            builds the figure + table
-  mpo_recovery/       MPO validation + lossy-compression study (Figs. 7-8)
+  mpo_recovery/       MPO validation + lossy-compression study (Figs. 8-9)
     mpo_bonddim_compare.py        our MPO builder vs Renormalizer (bond dims)
     mpo_recovery.py               reconstruction error vs retained bond dim
     make_mpo_recovery_figure.py   builds the figures
+  round2_referee/     comparison with exact FCI and resource estimates
+                      (Sec. VI.C, Fig. 5; Sec. VII.B resource numbers)
+    detspace.py                   exact pool energy on the reached determinants,
+                                  sparse FCI in the (N_alpha, N_beta) sector
+    nbstate.py                    rebuilds the notebook state for any molecule
+                                  (Hamiltonian, MPO, DMRG, sampling + curation)
+    run_round2.py                 one (molecule, chi) task: source MPS, sampling,
+                                  exact pool energy, ||c||_1, p_succ, fragment counts
+    dmrg_multistart.py            multi-start symmetry-penalty DMRG (diagnostics)
+    tasks.txt, job.sh             task list + parallel driver
+    make_round2_outputs.py        builds Fig. 5 and the Sec. VII.B numbers
+    results_colab/                raw per-seed JSON results
 ```
 
 ## Install
@@ -48,14 +60,20 @@ pip install -e .                          # installs qu_alg_qu_sim_tensor_networ
 ## Reproduce the figures
 Outputs go to `./paper_outputs/{figs,data,tables}` (override with `PAPER_OUT`).
 ```bash
-# Fig. 4 / Table I  (pool baselines: MPS-sampled vs random vs chemistry)
+# Fig. 6 / Table I  (pool baselines: MPS-sampled vs random vs chemistry)
 python scripts/referee_baselines/r26_baselines_exact_C2H2.py
 python scripts/referee_baselines/make_r26_figure.py
 
-# Fig. 7  (our MPO builder vs Renormalizer)  and  Fig. 8  (lossy compression)
+# Fig. 8  (our MPO builder vs Renormalizer)  and  Fig. 9  (lossy compression)
 python scripts/mpo_recovery/mpo_bonddim_compare.py
 python scripts/mpo_recovery/mpo_recovery.py
 python scripts/mpo_recovery/make_mpo_recovery_figure.py
+
+# Fig. 5 / Sec. VII.B  (accuracy vs FCI for sources of increasing chi; resources vs size)
+cd scripts/round2_referee
+python run_round2.py --mol C2H2_sto3g_frozen --chi 16 --nsamples 1000,16000   # one task
+bash job.sh                       # all tasks in tasks.txt (8 parallel, OMP_NUM_THREADS=1)
+python make_round2_outputs.py     # reads results_colab/, writes paper_outputs/
 ```
 The Jupyter notebook reproduces the full pipeline (DMRG reference, perfect
 sampling, curation, bridge optimization, and the main-text figures) end to end;

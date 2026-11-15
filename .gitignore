@@ -5,3 +5,10 @@ build/
 dist/
 .ipynb_checkpoints/
 paper_outputs/
+
+# round-2 referee scratch (not part of the reproducibility package)
+scripts/round2_referee/_scratch/
+scripts/round2_referee/logs_local/
+scripts/round2_referee/results_src/
+scripts/round2_referee/_validate.log
+scripts/round2_referee/results_colab/r2results.tgz

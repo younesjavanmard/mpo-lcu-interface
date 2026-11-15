@@ -1,0 +1,15 @@
+[setup C2H2_sto3g_frozen] cell  2 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell  5 ok (1.4s)
+[setup C2H2_sto3g_frozen] cell  6 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell  8 ok (2.1s)
+[setup C2H2_sto3g_frozen] cell  9 ok (4.8s)
+[setup C2H2_sto3g_frozen] cell 11 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell 12 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell 14 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell 22 ok (41.1s)
+[setup C2H2_sto3g_frozen] cell 24 ok (0.0s)
+[setup C2H2_sto3g_frozen] cell 30 ok (0.0s)
+[C2H2_sto3g_frozen] n=20 E_HF=-75.85338949 E_FCI=-75.99741935 dim=44100
+[C2H2_sto3g_frozen chi=32] E_src=-75.99302403 dE=4.395 mHa F_src=0.99806 norm_sector=0.999868
+[C2H2_sto3g_frozen chi=32] N=16000 seed=0 |U|=3011 dets=198 dE_fci=5.233 dE_src=+0.837 mHa F=0.9977 Lam=3.354 p=0.089 (10150.84s)
+done /content/r2/scripts/round2_referee/results_n16k/s0/r2_C2H2_sto3g_frozen_chi32.json
